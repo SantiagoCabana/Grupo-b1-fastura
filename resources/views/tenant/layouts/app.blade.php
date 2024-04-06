@@ -116,109 +116,130 @@
 </head>
 <body class="pr-0">
 
-    <section class="body">
-        <!-- start: header -->
-        {{-- @include('tenant.layouts.partials.header') --}}
-        <!-- end: header -->
-        <div class="inner-wrapper">
-            <!-- start: sidebar -->
-            @include('tenant.layouts.partials.sidebar')
-            <!-- end: sidebar -->
-            <section role="main" class="content-body" id="main-wrapper">
-                @include('tenant.layouts.partials.header')
-              @yield('content')
-              @include('tenant.layouts.partials.sidebar_styles')
+<section class="body">
+    <!-- start: header -->
+    {{-- @include('tenant.layouts.partials.header') --}}
+    <!-- end: header -->
+    <div class="inner-wrapper">
+        <!-- start: sidebar -->
+        @include('tenant.layouts.partials.sidebar')
+        <!-- end: sidebar -->
+        <section role="main" class="content-body" id="main-wrapper">
+            @include('tenant.layouts.partials.header')
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Configuración de Reservación</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ route('reservation.configuration.update') }}" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="check_in_time">Hora de Entrada:</label>
+                                    <input type="time" class="form-control" id="check_in_time" name="check_in_time" value="{{ $reservationConfiguration->check_in_time }}">
+                                </div>
+                                <!-- Agrega más campos de configuración aquí si es necesario -->
 
-              @include('tenant.layouts.partials.check_last_password_update')
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @yield('content')
+            @include('tenant.layouts.partials.sidebar_styles')
 
-            </section>
+            @include('tenant.layouts.partials.check_last_password_update')
 
-            @yield('package-contents')
-        </div>
-    </section>
-    @if($show_ws)
-        @if(strlen($phone_whatsapp) > 0)
-        <a class='ws-flotante' href='https://wa.me/{{$phone_whatsapp}}' target="BLANK" style="background-image: url('{{asset('logo/ws.png')}}'); background-size: 70px; background-repeat: no-repeat;" ></a>
-        @endif
+        </section>
+
+        @yield('package-contents')
+    </div>
+</section>
+@if($show_ws)
+    @if(strlen($phone_whatsapp) > 0)
+    <a class='ws-flotante' href='https://wa.me/{{$phone_whatsapp}}' target="BLANK" style="background-image: url('{{asset('logo/ws.png')}}'); background-size: 70px; background-repeat: no-repeat;" ></a>
     @endif
+@endif
+</section>
 
+<!-- Vendor -->
+<script src="{{ asset('porto-light/vendor/jquery/jquery.js')}}"></script>
+<script src="{{ asset('porto-light/vendor/jquery-browser-mobile/jquery.browser.mobile.js')}}"></script>
+<script src="{{ asset('porto-light/vendor/jquery-cookie/jquery-cookie.js')}}"></script>
+{{-- <script src="{{ asset('porto-light/master/style-switcher/style.switcher.js')}}"></script> --}}
+<script src="{{ asset('porto-light/vendor/popper/umd/popper.min.js')}}"></script>
+<!-- <script src="{{ asset('porto-light/vendor/bootstrap/js/bootstrap.js')}}"></script> -->
+{{-- <script src="{{ asset('porto-light/vendor/common/common.js')}}"></script> --}}
+<script src="{{ asset('porto-light/vendor/nanoscroller/nanoscroller.js')}}"></script>
+<script src="{{ asset('porto-light/vendor/magnific-popup/jquery.magnific-popup.js')}}"></script>
+<script src="{{ asset('porto-light/vendor/jquery-placeholder/jquery-placeholder.js')}}"></script>
+<script src="{{ asset('porto-light/vendor/select2/js/select2.js') }}"></script>
+<script src="{{ asset('porto-light/vendor/datatables/media/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('porto-light/vendor/datatables/media/js/dataTables.bootstrap4.min.js')}}"></script>
 
-    <!-- Vendor -->
-    <script src="{{ asset('porto-light/vendor/jquery/jquery.js')}}"></script>
-    <script src="{{ asset('porto-light/vendor/jquery-browser-mobile/jquery.browser.mobile.js')}}"></script>
-    <script src="{{ asset('porto-light/vendor/jquery-cookie/jquery-cookie.js')}}"></script>
-    {{-- <script src="{{ asset('porto-light/master/style-switcher/style.switcher.js')}}"></script> --}}
-    <script src="{{ asset('porto-light/vendor/popper/umd/popper.min.js')}}"></script>
-    <!-- <script src="{{ asset('porto-light/vendor/bootstrap/js/bootstrap.js')}}"></script> -->
-    {{-- <script src="{{ asset('porto-light/vendor/common/common.js')}}"></script> --}}
-    <script src="{{ asset('porto-light/vendor/nanoscroller/nanoscroller.js')}}"></script>
-    <script src="{{ asset('porto-light/vendor/magnific-popup/jquery.magnific-popup.js')}}"></script>
-    <script src="{{ asset('porto-light/vendor/jquery-placeholder/jquery-placeholder.js')}}"></script>
-    <script src="{{ asset('porto-light/vendor/select2/js/select2.js') }}"></script>
-    <script src="{{ asset('porto-light/vendor/datatables/media/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{ asset('porto-light/vendor/datatables/media/js/dataTables.bootstrap4.min.js')}}"></script>
+{{-- Specific Page Vendor --}}
+<script src="{{asset('porto-light/vendor/jquery-ui/jquery-ui.js')}}"></script>
+<script src="{{asset('porto-light/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js')}}"></script>
+<!--<script src="{{asset('porto-light/vendor/select2/js/select2.js')}}"></script>-->
 
-    {{-- Specific Page Vendor --}}
-    <script src="{{asset('porto-light/vendor/jquery-ui/jquery-ui.js')}}"></script>
-    <script src="{{asset('porto-light/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js')}}"></script>
-    <!--<script src="{{asset('porto-light/vendor/select2/js/select2.js')}}"></script>-->
+<script src="{{asset('porto-light/vendor/jquery-loading/dist/jquery.loading.js')}}"></script>
 
-    <script src="{{asset('porto-light/vendor/jquery-loading/dist/jquery.loading.js')}}"></script>
+<!--<script src="assets/vendor/select2/js/select2.js"></script>-->
+{{--<script src="{{asset('porto-light/vendor/bootstrap-multiselect/bootstrap-multiselect.js')}}"></script>--}}
 
-    <!--<script src="assets/vendor/select2/js/select2.js"></script>-->
-    {{--<script src="{{asset('porto-light/vendor/bootstrap-multiselect/bootstrap-multiselect.js')}}"></script>--}}
+<!-- Moment -->
+{{--<script src="{{ asset('porto-light/vendor/moment/moment.js') }}"></script>--}}
 
-    <!-- Moment -->
-    {{--<script src="{{ asset('porto-light/vendor/moment/moment.js') }}"></script>--}}
+<!-- DatePicker -->
+{{--<script src="{{asset('porto-light/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>--}}
 
-    <!-- DatePicker -->
-    {{--<script src="{{asset('porto-light/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>--}}
+<!-- Date range Plugin JavaScript -->
+{{--<script src="{{ asset('porto-light/vendor/bootstrap-timepicker/bootstrap-timepicker.js') }}"></script>--}}
+{{--<script src="{{ asset('porto-light/vendor/bootstrap-daterangepicker/daterangepicker.js') }}"></script>--}}
 
-    <!-- Date range Plugin JavaScript -->
-    {{--<script src="{{ asset('porto-light/vendor/bootstrap-timepicker/bootstrap-timepicker.js') }}"></script>--}}
-    {{--<script src="{{ asset('porto-light/vendor/bootstrap-daterangepicker/daterangepicker.js') }}"></script>--}}
+<!-- Theme Initialization Files -->
+{{-- <script src="{{asset('porto-light/js/theme.init.js')}}"></script> --}}
 
-    <!-- Theme Initialization Files -->
-    {{-- <script src="{{asset('porto-light/js/theme.init.js')}}"></script> --}}
+{{--<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>--}}
+{{--<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>--}}
 
-    {{--<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>--}}
-    {{--<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>--}}
+@stack('scripts')
 
-    @stack('scripts')
+<script src="{{ asset('js/manifest.js') }}"></script>
+<script src="{{ asset('js/vendor.js') }}"></script>
+<!-- Theme Base, Components and Settings -->
+<script src="{{asset('porto-light/js/theme.js')}}"></script>
 
-    <script src="{{ asset('js/manifest.js') }}"></script>
-    <script src="{{ asset('js/vendor.js') }}"></script>
-    <!-- Theme Base, Components and Settings -->
-    <script src="{{asset('porto-light/js/theme.js')}}"></script>
+<!-- Theme Custom -->
+<script src="{{asset('porto-light/js/custom.js')}}"></script>
+<script src="{{asset('porto-light/js/jquery.xml2json.js')}}"></script>
 
-    <!-- Theme Custom -->
-    <script src="{{asset('porto-light/js/custom.js')}}"></script>
-    <script src="{{asset('porto-light/js/jquery.xml2json.js')}}"></script>
+<script>
 
-    <script>
+    function parseXMLToJSON(source)
+    {
+        let transform = $.xml2json(source);
+        return transform
+    }
 
-        function parseXMLToJSON(source)
-        {
-            let transform = $.xml2json(source);
-            return transform
-        }
-
-        $(document).ready(function () {
-            $('#dropdown-notifications').click(function(e) {
-                $('#dropdown-notifications').toggleClass('showed');
-                $('#dn-toggle').toggleClass('show');
-                $('#dn-menu').toggleClass('show');
-                e.stopPropagation();
-            });
+    $(document).ready(function () {
+        $('#dropdown-notifications').click(function(e) {
+            $('#dropdown-notifications').toggleClass('showed');
+            $('#dn-toggle').toggleClass('show');
+            $('#dn-menu').toggleClass('show');
+            e.stopPropagation();
         });
+    });
 
-        $(document).click(function(){
-            $('#dropdown-notifications').removeClass('showed');
-            $('#dn-toggle').removeClass('show');
-            $('#dn-menu').removeClass('show');
-        });
+    $(document).click(function(){
+        $('#dropdown-notifications').removeClass('showed');
+        $('#dn-toggle').removeClass('show');
+        $('#dn-menu').removeClass('show');
+    });
 
-    </script>
-    <!-- <script src="//code.tidio.co/1vliqewz9v7tfosw5wxiktpkgblrws5w.js"></script> -->
+</script>
+<!-- <script src="//code.tidio.co/1vliqewz9v7tfosw5wxiktpkgblrws5w.js"></script> -->
 </body>
 </html>
