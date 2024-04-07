@@ -39,7 +39,7 @@
                             clearable
                             placeholder="Buscar por nombre de habitacion"
                             prefix-icon="el-icon-search"
-                            style="width: 100%;"
+                            style="width: 100%; background-color: green;"
                             @input="searchRooms"
                         >
                         </el-input>
