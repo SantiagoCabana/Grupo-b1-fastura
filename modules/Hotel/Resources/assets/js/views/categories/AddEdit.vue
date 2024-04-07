@@ -1,48 +1,64 @@
 <template>
-  <el-dialog
-    :title="title"
-    :visible="visible"
-    @close="onClose"
-    @open="onCreate"
-    width="400px"
-  >
-    <form autocomplete="off" @submit.prevent="onSubmit">
-      <div class="form-body">
-        <div class="form-group">
-          <label for="description">Descripción</label>
-          <input
-            type="text"
-            id="description"
-            class="form-control"
-            v-model="form.description"
-            :class="{ 'is-invalid': errors.description }"
-          />
-          <div v-if="errors.description" class="invalid-feedback">
-            {{ errors.description[0] }}
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Mostrar categoría</label>
-          <el-switch v-model="form.active"></el-switch>
-        </div>
-        <div class="row text-center">
-          <div class="col-6">
-            <el-button
-              native-type="submit"
-              :disabled="loading"
-              type="primary"
-              class="btn-block"
-              :loading="loading"
-              >Guardar</el-button
-            >
-          </div>
-          <div class="col-6">
-            <el-button class="btn-block" @click="onClose">Cancelar</el-button>
-          </div>
-        </div>
-      </div>
-    </form>
-  </el-dialog>
+    <el-dialog
+        :title="title"
+        :visible="visible"
+        @close="onClose"
+        @open="onCreate"
+        width="400px"
+    >
+        <form autocomplete="off" @submit.prevent="onSubmit">
+            <div class="form-body">
+                <div class="form-group">
+                    <label for="description">Descripción</label>
+                    <input
+                        type="text"
+                        id="description"
+                        class="form-control"
+                        v-model="form.description"
+                        :class="{ 'is-invalid': errors.description }"
+                        @input="validateDescription"
+                        <!--
+                        Llama
+                        a
+                        la
+                        función
+                        de
+                        validación
+                        al
+                        ingresar
+                        datos
+                        --
+                    />
+                    />
+                    <!-- Mensaje de error para la descripción -->
+                    <div v-if="errors.description" class="invalid-feedback">
+                        {{ errors.description[0] }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Mostrar categoría</label>
+                    <el-switch v-model="form.active"></el-switch>
+                </div>
+                <div class="row text-center">
+                    <div class="col-6">
+                        <el-button
+                            native-type="submit"
+                            :disabled="loading"
+                            type="primary"
+                            class="btn-block"
+                            :loading="loading"
+                            >Guardar</el-button
+                        >
+                    </div>
+                    <div class="col-6">
+                        <el-button class="btn-block" @click="onClose"
+                            >Cancelar</el-button
+                        >
+                    </div>
+                </div>
+            </div>
+        </form>
+    </el-dialog>
 </template>
 
 <script>
@@ -68,37 +84,50 @@ export default {
     };
   },
   methods: {
+    // Función para validar la descripción y permitir solo caracteres específicos
+    validateDescription() {
+      const regex = /^[a-zA-Z0-9\-.,()'"\s]+$/; // Expresión regular para permitir caracteres alfanuméricos y símbolos específicos
+      if (!regex.test(this.form.description)) {
+        this.errors.description = ['Solo se permiten caracteres alfanuméricos y los siguientes símbolos: -.,()\'"'];
+      } else {
+        this.errors.description = null; // Borra el mensaje de error si la entrada es válida
+      }
+    },
     onUpdate() {
-      this.loading = true;
-      this.$http
-        .put(`/hotels/categories/${this.rate.id}/update`, this.form)
-        .then((response) => {
-          this.$emit("onUpdateItem", response.data.data);
-          this.onClose();
-        })
-        .finally(() => {
-          this.loading = false;
-          this.errors = {};
-        })
-        .catch((error) => {
-          this.axiosError(error);
-        });
+      if (!this.errors.description) { // Verifica la validez de la descripción antes de actualizar
+        this.loading = true;
+        this.$http
+          .put(`/hotels/categories/${this.rate.id}/update`, this.form)
+          .then((response) => {
+            this.$emit("onUpdateItem", response.data.data);
+            this.onClose();
+          })
+          .finally(() => {
+            this.loading = false;
+            this.errors = {};
+          })
+          .catch((error) => {
+            this.axiosError(error);
+          });
+      }
     },
     onStore() {
-      this.loading = true;
-      this.$http
-        .post("/hotels/categories/store", this.form)
-        .then((response) => {
-          this.$emit("onAddItem", response.data.data);
-          this.onClose();
-        })
-        .finally(() => {
-          this.loading = false;
-          this.errors = {};
-        })
-        .catch((error) => {
-          this.axiosError(error);
-        });
+      if (!this.errors.description) { // Verifica la validez de la descripción antes de guardar
+        this.loading = true;
+        this.$http
+          .post("/hotels/categories/store", this.form)
+          .then((response) => {
+            this.$emit("onAddItem", response.data.data);
+            this.onClose();
+          })
+          .finally(() => {
+            this.loading = false;
+            this.errors = {};
+          })
+          .catch((error) => {
+            this.axiosError(error);
+          });
+      }
     },
     onSubmit() {
       if (this.rate) {
@@ -124,3 +153,4 @@ export default {
   },
 };
 </script>
+
