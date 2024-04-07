@@ -42,6 +42,7 @@
                             prefix-icon="el-icon-search"
                             style="width: 100%; background-color: green;"
                             @input="searchRooms"
+                            :placeholder-style="{ color: '#333' }"
                         >
                         </el-input>
                     </div>
