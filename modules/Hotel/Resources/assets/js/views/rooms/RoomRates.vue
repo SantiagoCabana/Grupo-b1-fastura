@@ -57,6 +57,7 @@
             required
             v-model="form.price"
             :class="{ 'is-invalid': errors.price }"
+            min="0"
           />
           <div v-if="errors.price" class="invalid-feedback">
             {{ errors.price[0] }}
