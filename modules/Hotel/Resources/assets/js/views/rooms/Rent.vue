@@ -213,7 +213,6 @@
                                 <label for="rate">Precio</label>
                                 <el-input-number
                                     v-model="form.rate_price"
-                                    controls-position="right"
                                     :min="0"
                                     @change="onUpdateTotalToPay"
                                 ></el-input-number>
@@ -279,7 +278,7 @@
                                     @change="onChangeStatusPayment"
                                 >
                                     <el-option value="PAID" label="Pagado"></el-option>
-                                    <el-option value="DEBT" label="Falta pagar"></el-option>
+                                    <el-option value="DEBT" label="pendiente de pago"></el-option>
                                 </el-select>
                                 <small
                                     class="form-control-feedback"

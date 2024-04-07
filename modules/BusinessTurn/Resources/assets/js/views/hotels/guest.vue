@@ -6,7 +6,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group" :class="{'has-danger': errors.identity_document_type_id}">
-                            <label class="control-label">Tipo Doc. Identidad <span class="text-danger">*</span></label>
+                            <label class="control-label">Tipo Documento de Identidad <span class="text-danger">*</span></label>
                             <el-select v-model="form.identity_document_type_id" filterable  popper-class="el-select-identity_document_type" dusk="identity_document_type_id" >
                                 <el-option v-for="option in identity_document_types" :key="option.id" :value="option.id" :label="option.description"></el-option>
                             </el-select>
@@ -82,7 +82,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group" :class="{'has-danger': errors.origin}">
-                            <label class="control-label">Procedencia</label>
+                            <label class="control-label">Procedencias</label>
                             <el-input v-model="form.origin"></el-input>
                             <small class="form-control-feedback" v-if="errors.origin" v-text="errors.origin[0]"></small>
                         </div>

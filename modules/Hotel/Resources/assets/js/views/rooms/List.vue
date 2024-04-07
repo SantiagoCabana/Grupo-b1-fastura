@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div class="card mb-0">
+    <div class="card mb-0 dark-background">
       <div class="card-header bg-info">
         <h3 class="my-0">Listado de habitaciones</h3>
       </div>
@@ -191,6 +191,13 @@
     ></ModalRoomRates>
   </div>
 </template>
+
+<style>
+.dark-background {
+  background-color: #333; /* Cambia el color de fondo a uno oscuro */
+  color: #fff; /* Cambia el color del texto para que sea legible en el fondo oscuro */
+}
+</style>
 
 <script>
 import ModalAddEdit from "./AddEdit";
