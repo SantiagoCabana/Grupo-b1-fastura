@@ -21,6 +21,7 @@
                             :disabled="loading"
                             clearable
                             placeholder="Piso"
+                            :filterable="false" <!-- Deshabilitar la capacidad de filtrado y entrada de texto -->
                             @change="searchRooms"
                         >
                             <el-option
