@@ -15,7 +15,7 @@
                     </div> -->
                     <!-- <div class="col-md-3">
                         <div class="form-group" :class="{'has-danger': errors.number}">
-                            <label class="control-label">Número</label>
+                            <label class="control-label">Númeaaaaaaro</label>
                                 <el-input v-model="hotel.number" :maxlength="maxLength" >
                                 </el-input>
                             <small class="form-control-feedback" v-if="errors.number" v-text="errors.number[0]"></small>
