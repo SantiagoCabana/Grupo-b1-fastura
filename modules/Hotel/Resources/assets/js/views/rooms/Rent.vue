@@ -279,7 +279,7 @@
                                     @change="onChangeStatusPayment"
                                 >
                                     <el-option value="PAID" label="Pagado"></el-option>
-                                    <el-option value="DEBT" label="Falta pagar"></el-option>
+                                    <el-option value="DEBT" label="pendiente de pago"></el-option>
                                 </el-select>
                                 <small
                                     class="form-control-feedback"
