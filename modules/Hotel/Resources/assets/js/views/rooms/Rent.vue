@@ -213,7 +213,6 @@
                                 <label for="rate">Precio</label>
                                 <el-input-number
                                     v-model="form.rate_price"
-                                    controls-position="right"
                                     :min="0"
                                     @change="onUpdateTotalToPay"
                                 ></el-input-number>
