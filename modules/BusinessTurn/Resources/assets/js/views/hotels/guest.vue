@@ -35,7 +35,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group" :class="{'has-danger': errors.name}">
-                            <label class="control-label">Nombres y Apellidos</label>
+                            <label class="control-label">Nombres y Apellidos Completos</label>
                             <el-input v-model="form.name"></el-input>
                             <small class="form-control-feedback" v-if="errors.name" v-text="errors.name[0]"></small>
                         </div>
